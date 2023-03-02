@@ -44,13 +44,34 @@ class MyArray {
         delete this.data[this.length - 1];
         this.length--;
     }
+
+    // Agrega un elemento al principio del Array
+    unshift(item){
+        for(let i = this.length; i > 0; i--){
+            this.data[i] = this.data[i - 1];
+        }
+        this.data[0] = item;
+        this.length++
+
+        return this.data;
+    }
+    
+    // Elimina el primer elemento de un Array
+    shift(){
+        const item = this.delete(0);
+
+        return item;
+    }
 }
 
 const myArray = new MyArray();       //Instancia de la clase(MyArray)
 console.log(myArray.push("Luis"));   //Insertar elemento luis
-console.log(myArray.push("Andres")); //Insertar elemento Andres
+console.log(myArray.push("Andres")); // Insertar elemento Andres
 console.log(myArray.push("Jorge"));  //Insertar elemento Jorge
 console.log(myArray.get(1));         //Obtener el elemento en la posición 1
-console.log(myArray.pop());
-console.log(myArray.delete(1));
+// console.log(myArray.pop());
+// console.log(myArray.delete(1));
+console.log(myArray.unshift('Santiago'));
+console.log(myArray.shift());
 console.log(myArray.data);
+
