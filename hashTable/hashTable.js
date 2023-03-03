@@ -37,6 +37,36 @@ class HashTable {
         }
         return undefined;
     }
+    
+    // Elimina el elemento la llave(key) pasado como parametro
+    delete(key) {
+        const address = this.hashMethod(key);
+        const currentBucket = this.data[address];
+        if(currentBucket) {
+            for(let i = 0; i < currentBucket.length; i++) {
+                if(currentBucket[i][0] === key) {
+                    const bucket = this.data[address][i];
+                    delete this.data[address][i];
+                    this.shiftIndex(i, address);
+
+                    if(!this.data[address].length){
+                        delete this.data[address];
+                    }
+                    return bucket;
+                }
+            }
+        }
+        return undefined;
+    }
+
+    // Realiza el cambio de indice(index) de los elemento posteriores al elemento a eliminar
+    shiftIndex(index, address) {
+        for(let i  = index; i < this.data[address].length - 1; i++) {
+            this.data[address][i] = this.data[address][i + 1];
+        }
+        delete this.data[address][this.data[address].length - 1];
+        this.data[address].length--;
+    }
 }
 
 const myHashTable = new HashTable(50);
@@ -47,4 +77,5 @@ myHashTable.set('Samuel', 1995);
 console.log(myHashTable.get('Diego'));
 console.log(myHashTable.get('Maria'));
 console.log(myHashTable.get('Samuel'));
+console.log(myHashTable.delete('Maria'));
 console.log(myHashTable.data);
