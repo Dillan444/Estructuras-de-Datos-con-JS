@@ -67,15 +67,32 @@ class HashTable {
         delete this.data[address][this.data[address].length - 1];
         this.data[address].length--;
     }
+
+    // Obtiene todas las llaves de array data
+    getAllKeys(){
+        let keys = []
+        this.data.forEach(element => {
+            if(element.length > 1){
+                element.forEach(element => {
+                    keys.push(element[0])
+                })
+            }else{
+                keys.push(element[0][0]);
+            }
+        });
+        return keys;
+    }
 }
 
 const myHashTable = new HashTable(50);
 console.log(myHashTable);
 myHashTable.set('Diego', 2002);
 myHashTable.set('Maria', 2006);
+myHashTable.set('Santiago', 2006);
 myHashTable.set('Samuel', 1995);
 console.log(myHashTable.get('Diego'));
 console.log(myHashTable.get('Maria'));
 console.log(myHashTable.get('Samuel'));
 console.log(myHashTable.delete('Maria'));
+console.log(myHashTable.getAllKeys());
 console.log(myHashTable.data);
