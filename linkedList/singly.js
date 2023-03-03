@@ -36,6 +36,32 @@ class MySinglyLinkedLinst {
 
         this.length = 1
     }
+    
+    // Agrega un nuevo elemento al final(tail)
+    append(value) {
+        const newNodo = new Node(value);
+
+        this.tail.next = newNodo;
+        this.tail = newNodo;
+        this.length++;
+
+        return this;
+    }
+
+    // Agrega un nuevo valor al principio(head)
+    prepend(value) {
+        const newNodo = new Node(value);
+
+        newNodo.next = this.head;
+        this.head = newNodo;
+        this.length++;
+
+        return this;
+    }
 }
 
 let mySinglyLinkedLinst = new MySinglyLinkedLinst(1);
+mySinglyLinkedLinst.append(2);
+mySinglyLinkedLinst.append(3);
+mySinglyLinkedLinst.prepend(0);
+console.log(mySinglyLinkedLinst);
