@@ -58,10 +58,42 @@ class MySinglyLinkedLinst {
 
         return this;
     }
+
+    // Inserta un nuevo elemento(value) en la posición(index) indicada
+    insert(index, value){
+        if(index >= this.length) {
+            return this.append(value);
+        }
+
+        const newNode = new Node(value);
+        const firstPointer = this.getTheIndex(index - 1);
+        const holdingPointer = firstPointer.next;
+        firstPointer.next = newNode;
+        newNode.next = holdingPointer;
+
+        this.length++
+        return this;
+    }
+
+    // Obtiene el elemeto de la posición(index) indicada
+    getTheIndex(index) {
+        let counter = 0;
+        let currentNode = this.head;
+
+        while(counter != index){
+            currentNode = currentNode.next;
+            counter++;
+        }
+
+        return currentNode;
+    }
 }
 
 let mySinglyLinkedLinst = new MySinglyLinkedLinst(1);
 mySinglyLinkedLinst.append(2);
 mySinglyLinkedLinst.append(3);
+mySinglyLinkedLinst.append(4);
+mySinglyLinkedLinst.append(6);
 mySinglyLinkedLinst.prepend(0);
+mySinglyLinkedLinst.insert(3, 5);
 console.log(mySinglyLinkedLinst);
