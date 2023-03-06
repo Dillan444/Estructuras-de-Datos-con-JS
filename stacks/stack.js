@@ -32,6 +32,25 @@ class Stack {
         this.length++;
         return this;       
     }
+
+    // Elimina el ultimo elemento
+    pop(){
+        if(!this.top){
+            return undefined;
+        }
+        const deleted = this.top.value;
+        
+        if(this.length === 1){
+            this.top = null;
+            this.bottom = null;
+        }else{
+            const holdingPointer = this.top.next;
+            this.top = holdingPointer;
+        }
+        
+        this.length--;
+        return deleted;
+    }
 }
 
 const myStack = new Stack();
@@ -40,3 +59,4 @@ myStack.push(2);
 myStack.push(3);
 console.log(myStack);
 console.log(myStack.peek());
+console.log(myStack.pop());
