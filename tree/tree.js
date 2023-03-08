@@ -37,6 +37,31 @@ class BinatySearchTree {
             }
         }
     }
+    search(value){
+        if(!this.root) {
+            return null;
+        }
+        let currentNode = this.root;
+            while(true) {
+                if(value < currentNode.value) { //Izquierda
+                    if(!currentNode.left){
+                        return "Dato no existe";
+                    }else if(currentNode.value === value){
+                        return currentNode;
+                    }
+                    currentNode = currentNode.left
+
+                }else { // Derecha
+                    if(!currentNode.right) {
+                        return "Dato no existe";
+                    }else if(currentNode.value === value){
+                        return currentNode;
+                    }
+                    currentNode = currentNode.right;
+                }
+            }
+
+    }
 
 }
 
@@ -51,3 +76,4 @@ myTree.insert(10);
     myTree.insert(20);
 
 console.log(myTree);
+console.log(myTree.search(20));
